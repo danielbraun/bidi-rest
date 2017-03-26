@@ -1,22 +1,24 @@
 (ns bidi-rest.core)
 
-(defn- resources [id]
+(defn resources [id & {:keys [children param path]
+                       :or {param :id}}]
   (let [action #(keyword (name id) (name %))]
-    [(name id) {"" {:get (action :index)
+    [(name (or path id)) {"" {:get (action :index)
                     :post (action :create)}
                 "/new" {:get (action :new)}
-                ["/" :id] {"" {:get (action :show)
-                               :put (action :update)
-                               :patch (action :update)
-                               :delete (action :destroy)}
-                           "/edit" {:get (action :edit)}}}]))
+                ["/" param] [["" {:get (action :show)
+                                  :put (action :update)
+                                  :patch (action :update)
+                                  :delete (action :destroy)}]
+                             ["/edit" {:get (action :edit)}]
+                             ["/" children]]}]))
 
-(defn- resource [id]
+(defn resource [id & {:keys [path]}]
   (let [action #(keyword (name id) (name %))]
-    [(name id) {"" {:delete (action :destroy)
-                    :get (action :show)
-                    :patch (action :update)
-                    :post (action :create)
-                    :put (action :update)}
-                "/edit" {:get (action :edit)}
-                "/new" {:get (action :new)}}]))
+    [(name (or path id)) {"" {:delete (action :destroy)
+                              :get (action :show)
+                              :patch (action :update)
+                              :post (action :create)
+                              :put (action :update)}
+                          "/edit" {:get (action :edit)}
+                          "/new" {:get (action :new)}}]))
