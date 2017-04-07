@@ -1,14 +1,11 @@
 # bidi-rest
 
-A Clojure library designed to ... well, that part is up to you.
+bidi-rest provides functions to create Rails-like resourceful routes for your [Bidi](https://github.com/juxt/bidi) routers.
 
-## Usage
-
-FIXME
 
 ## License
 
-Copyright © 2017 FIXME
+Copyright © 2017 Daniel Braun
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
