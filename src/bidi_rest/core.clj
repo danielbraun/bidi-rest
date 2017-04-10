@@ -18,9 +18,9 @@
         new]
        [["" [index create]]
         new
-        [["/" param] [["" (into [destroy show] update)]
-                      edit
-                      ["/" children]]]])]))
+        [["/" (keyword param)] [["" (into [destroy show] update)]
+                                edit
+                                ["/" children]]]])]))
 
 (def resources (partial make-resource false))
 (def resource (partial make-resource true))
