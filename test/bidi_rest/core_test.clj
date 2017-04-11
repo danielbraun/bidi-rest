@@ -8,7 +8,9 @@
         (resources :planets
                    :path "planetas"
                    :path-names {:new "nnew"
-                                :edit "eedit"})
+                                :edit "eedit"}
+                   :children [(resources :planet-moons
+                                         :path "moons")])
         (resources :stars :param :star_id)
         (resource :universe)
         (resource :universe
@@ -43,6 +45,7 @@
     :planets/new [:get "/planetas/nnew"]
     :planets/edit [:get "/planetas/1/eedit"]
     :universe/new [:get "/universo/neww"]
-    :universe/edit [:get "/universo/edite"])
+    :universe/edit [:get "/universo/edite"]
+    :planet-moons/index [:get "/planetas/3/moons"])
   (is (= "3" (get-in (match-request [:get "/stars/3"])
                      [:route-params :star_id]))))

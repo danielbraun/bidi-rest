@@ -1,5 +1,7 @@
 (ns bidi-rest.core)
 
+;API is based on http://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Resources.html#method-i-resources
+
 (defn- make-resource
   [singular? id & {:keys [children param path-names path]
                    :or {param :id}}]
