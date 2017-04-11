@@ -5,10 +5,16 @@
 
 (def routes
   ["/" [(resources :planets)
-        (resources :planets :path "planetas")
+        (resources :planets
+                   :path "planetas"
+                   :path-names {:new "nnew"
+                                :edit "eedit"})
         (resources :stars :param :star_id)
         (resource :universe)
-        (resource :universe :path "universo")]])
+        (resource :universe
+                  :path "universo"
+                  :path-names {:new "neww"
+                               :edit "edite"})]])
 
 (defn- match-request [[method uri]]
   (bidi/match-route routes uri :request-method method))
@@ -31,6 +37,12 @@
     :universe/update [:patch "/universe"]
     :universe/update [:put "/universe"]
     :universe/show [:get "/universo"]
-    :planets/index [:get "/planetas"])
+    :planets/index [:get "/planetas"]
+
+    ; Testing path-name
+    :planets/new [:get "/planetas/nnew"]
+    :planets/edit [:get "/planetas/1/eedit"]
+    :universe/new [:get "/universo/neww"]
+    :universe/edit [:get "/universo/edite"])
   (is (= "3" (get-in (match-request [:get "/stars/3"])
                      [:route-params :star_id]))))
