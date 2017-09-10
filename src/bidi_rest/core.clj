@@ -4,7 +4,8 @@
 
 (defn- make-resource
   [singular? id & {:keys [children param path-names path]
-                   :or {param :id}}]
+                   :or {param :id
+                        children []}}]
   (let [action #(keyword (name id) (name %))
         create [:post (action :create)]
         destroy [:delete (action :destroy)]
