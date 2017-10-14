@@ -18,7 +18,7 @@
     [(name (or path id))
      (if singular?
        [["" (into [destroy show create] update)]
-        ["/" [edit new]]]
+        ["/" (into [edit new] children)]]
        [["" [index create]]
         ["/" [new]]
         [["/" (keyword param)] [["" (into [destroy show] update)]
