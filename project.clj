@@ -1,4 +1,4 @@
-(defproject bidi-rest "0.1.0-SNAPSHOT"
+(defproject bidi-rest "0.1.0"
   :description "Rails-like resourceful routing for Bidi"
   :url "https://github.com/danielbraun/bidi-rest"
   :cljsbuild {:builds []}
